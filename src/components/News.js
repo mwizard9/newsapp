@@ -212,18 +212,13 @@ export class News extends Component {
     return (
       <div className='container' my-3>
         <h2>NewsMania-Top HeadLines</h2>
+
        <div className="row">
-        <div className="col-md-4">
+       {this.state.articles.map((element)=>{
+        return <div className="col-md-4">
         <NewsItem title="myTitle" description="myDesc" imageUrl="https://medias.lequipe.fr/img-photo-jpg/-/1500000001560313/4:0,2500:1664-640-427-75/3ed0a.jpg" newsUrl="TODO"/>
         </div>
-        <div className="col-md-4">
-        <NewsItem title="myTitle" description="myDesc"/>
-        </div>
-        <div className="col-md-4">
-        <NewsItem title="myTitle" description="myDesc"/>
-        </div>
-       
-        
+        })} 
        </div>
        
       </div>
