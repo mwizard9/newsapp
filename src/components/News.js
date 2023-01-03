@@ -3,45 +3,7 @@ import NewsItem from './NewsItem'
 
 export class News extends Component {
   articles = [
-    {
-      "source": {
-          "id": "die-zeit",
-          "name": "Die Zeit"
-      },
-      "author": null,
-      "title": "American Football: NFL-Spieler bricht auf dem Feld zusammen und muss wiederbelebt werden",
-      "description": "Nach einer Defensivaktion bricht Damar Hamlin von den Buffalo Bills zusammen. Sanitäter reanimieren ihn. Der Gesundheitszustand des 24-Jährigen ist laut NFL \"kritisch\".",
-      "url": "https://www.zeit.de/sport/2023-01/damar-hamlin-nfl-kollaps-american-football-buffalo-bills",
-      "urlToImage": null,
-      "publishedAt": "2023-01-03T06:58:30+00:00",
-      "content": "When browsing with ads:\r\nWe collect personal data and also transmit it to third-party providers\r\n that help us improve and finance our digital content. Some of the information stored on your device, … [+732 chars]"
-  },
-  {
-      "source": {
-          "id": "lequipe",
-          "name": "L'equipe"
-      },
-      "author": "L'EQUIPE",
-      "title": "Programme TV foot : à quelle heure et sur quelle chaîne voir les matchs de ce soir (3 janvier 2023) ?",
-      "description": "Retrouvez l'intégralité des retransmissions des matches de football du jour retransmis sur toutes les chaînes du bouquet TNT, Câble et Satellite. Ligue 1, Ligue 2, Premier League, coupes d'Europe... Suivez tous les matches en direct sur votre télévision ou en…",
-      "url": "https://www.lequipe.fr/Football/Actualites/Programme-tv-foot-a-quelle-heure-et-sur-quelle-chaine-voir-les-matchs-de-ce-soir-3-janvier-2023/1372593",
-      "urlToImage": "https://medias.lequipe.fr/img-photo-jpg/-/1500000001560313/4:0,2500:1664-640-427-75/3ed0a.jpg",
-      "publishedAt": "2023-01-03T06:00:19+00:00",
-      "content": "Premier League : 19e journée \r\n- Arsenal - Newcastle : à 20h45 en direct sur Canal + Foot - Everton - Brighton : à 20h45 en direct sur Canal + Multisports 1 - Leicester - Fulham : à 20h45 en direct s… [+103 chars]"
-  },
-  {
-      "source": {
-          "id": "ansa",
-          "name": "ANSA.it"
-      },
-      "author": "ANSA.it",
-      "title": "Nfl: contrasto in campo, safety Buffalo in gravi condizioni - Ultima Ora",
-      "description": "Il safety (difensore) dei Buffalo Bills, Damar Hamlin, è stato trasferito in un ospedale a Cincinnati in \"condizioni critiche\" dopo essere collassato sul campo nel mezzo della partita di lunedì sera contro i Bengals, ha reso noto la National Football Leagu...…",
-      "url": "http://www.ansa.it/sito/notizie/topnews/2023/01/03/nfl-contrasto-in-campo-safety-buffalo-in-gravi-condizioni_8443dd39-b6d7-4247-8fbe-943e7da4a4e9.html",
-      "urlToImage": "https://www.ansa.it/webimages/img_700/2023/1/3/3fb3bed3cca7f731026707a11aaf1af0.jpg",
-      "publishedAt": "2023-01-03T05:42:00Z",
-      "content": "(ANSA) - WASHINGTON, 03 GEN - Il safety (difensore) dei\r\nBuffalo Bills, Damar Hamlin, è stato trasferito in un ospedale a\r\nCincinnati in \"condizioni critiche\" dopo essere collassato sul\r\ncampo nel me… [+1616 chars]"
-  },
+    
   {
       "source": {
           "id": "cbs-news",
@@ -202,21 +164,32 @@ export class News extends Component {
 
   constructor(){
     super();
-    console.log("hello i am a constructor");
+    
     this.state = {
       articles: this.articles,
       loading: false
     }
   }
+  async componentDidMount(){
+    let url = "https://newsapi.org/v2/top-headlines?country=in&apiKey=66be1d74545042b280d308d4e580686b";
+    let data = await fetch(url);
+    let parseData = await data.json()
+    
+    this.setState({articles:parseData.articles})
+   
+  }
   render() {
+    
     return (
+      
       <div className='container' my-3>
+        
         <h2>NewsMania-Top HeadLines</h2>
 
        <div className="row">
        {this.state.articles.map((element)=>{
         return <div className="col-md-4" key={element.url}>
-        <NewsItem title={element.title.slice(0,40)} description={element.description.slice(0,88)} imageUrl={element.urlToImage} newsUrl={element.url}/>
+        <NewsItem title={element.title?element.title.slice(0,40):""} description={element.description?element.description.slice(0,88):""} imageUrl={element.urlToImage} newsUrl={element.url}/>
         </div>
         })} 
        </div>
