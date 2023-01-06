@@ -39,7 +39,7 @@ export class News extends Component {
   handleNextClick=async ()=>{
     console.log("next");
     if(!(this.state.page + 1 > Math.ceil(this.state.totalResults/this.props.pageSize))){
-    let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=66be1d74545042b280d308d4e580686b&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=66be1d74545042b280d308d4e580686b&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
     this.setState({loading:true})
     let data = await fetch(url);
     let parseData = await data.json()
