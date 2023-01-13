@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Walk from './Walk.gif'
 
 const spinner = () =>{ 
