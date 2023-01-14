@@ -9,26 +9,21 @@ const News = (props) => {
   const [articles, setArticles] = useState([])
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState(1)
+  const [totalResults, setTotalResult] = useState(0)
 
 
   const updateNews = async () => {
     const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&
-apiKey=66be1d74545042b280d308d4e580686b&page=${page}&pageSize=${props.pageSize}`;
+apiKey=425bc8058f6a437b8afcd4324233bc97&page=${page}&pageSize=${props.pageSize}`;
     setLoading(true);
     let data = await fetch(url);
     let parseData = await data.json()
     setArticles(parseData.articles)
     setLoading(false)
 
-    this.setState({
-      articles: parseData.articles,
-      totalResults: parseData.totalResults,
-      loading: false
-    })
-
   }
   useEffect(() => {
-    this.updateNews();
+    updateNews();
   }, [])
 
   const handlePreviousClick = async () => {
@@ -55,10 +50,10 @@ apiKey=66be1d74545042b280d308d4e580686b&page=${page}&pageSize=${props.pageSize}`
       </div>
       <div className="container d-flex justify-content-between">
         <button disabled={page <= 1} type="button" className='btn btn-dark' onClick={handlePreviousClick}> &larr; previous</button>
-        <button disabled={page + 1 > Math.ceil(this.state.totalResults / props.pageSize)} type="button" className='btn btn-dark' onClick={handleNextClick}>Next &rarr;</button>
+        <button disabled={page + 1 > Math.ceil(totalResults / props.pageSize)} type="button" className='btn btn-dark' onClick={handleNextClick}>Next &rarr;</button>
       </div>
     </div>
-  )
+  );
 }
 News.defaultProps = {
   country: 'in',

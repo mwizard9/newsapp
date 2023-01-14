@@ -15,7 +15,7 @@ export default class App extends Component {
     return (
       <div className='contaner'>
         <Router>
-          <NavBar />
+          <NavBar/>
           <Routes>
             <Route exact path="/" element={<News key="general" pageSize={this.pageSize} country="in" category="general" />}>
             </Route>
@@ -25,7 +25,7 @@ export default class App extends Component {
             </Route>
             <Route exact path="/general" element={<News key="general" pageSize={this.pageSize} country="in" category="general" />}>
             </Route>
-            <Route exact path="/health" element={<News key="health"  pageSize={this.pageSize} country="in" category="health" />}>
+            <Route exact path="/health" element={<News key="health" pageSize={this.pageSize} country="in" category="health" />}>
             </Route>
             <Route exact path="/science" element={<News key="science" pageSize={this.pageSize} country="in" category="science" />}>
             </Route>
