@@ -50,7 +50,7 @@ apiKey=425bc8058f6a437b8afcd4324233bc97&page=${page}&pageSize=${props.pageSize}`
       </div>
       <div className="container d-flex justify-content-between">
         <button disabled={page <= 1} type="button" className='btn btn-dark' onClick={handlePreviousClick}> &larr; previous</button>
-        <button disabled={page + 1 > Math.ceil(totalResults / props.pageSize)} type="button" className='btn btn-dark' onClick={handleNextClick}>Next &rarr;</button>
+        <button disabled={page + 1 > Math.ceil(setTotalResult / props.pageSize)} type="button" className='btn btn-dark' onClick={handleNextClick}>Next &rarr;</button>
       </div>
     </div>
   );
